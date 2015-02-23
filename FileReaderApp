@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+public class FileReaderApp {
+
+	public static void main(String[] args) {
+		BufferedReader br = null;
+		
+		try {
+			String currLine;
+			br = new BufferedReader(new FileReader("C:\\build.txt"));
+			
+			int lineNumber = 0;
+			while ((currLine = br.readLine()) != null) {
+				lineNumber++;
+				System.out.println(String.format("%d: %s", lineNumber, currLine));
+				if (lineNumber >= 5) break;
+			}
+			
+		} catch (IOException e) {
+			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)  br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		
+	}
+}
